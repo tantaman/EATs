@@ -1,0 +1,112 @@
+spinner to show EDT updates
+
+KeyEventDispatcher
+KeyEventPostProcessor
+
+Fold scroll draws
+cache image loads
+executorify loads
+Throttle loads
+OnEventThread and so on annotation
+
+
+Test invocation combiner w/ multiple thread thread pool.
+
+A load waiter?  Calls a func w/ a CB and doesn't return till the CB is invoked.
+
+Allow exec provider to take a method call?
+
+Rename throttler to invocationCombiner b/c that is what it really is.
+Allow user to provide a combiner.  Default is to just return last set of parameters.
+A different style of throttler that blocks the caller and everything eventually returns?
+eats events!!!
+Instrumenting static methods?
+Test constructor instrumentation...  can't do the re-name jazz on constructors...
+especially if they need to call super.
+Throttle option to wait for completion?
+Folding needs extra options: replace duplicates, ignore duplicates.  Option to wait for
+completion and return value?
+Throttle impl that will pass the list of all paramters...
+Caching method that returns null...
+Mixin (member, class, factory)
+Cache re-write
+schedule
+re-schedule
+Folding
+unique concurrent execution
+change debug annotation names?
+
+
+A mixin that mixes on a member that is already a part of the object!
+
+Test / enable the application of multiple annotations to one method.
+Make cache use MapMaker
+
+could add member vars to classes that hold the nutrients and annotations
+instead of doing those providers with arrays of em.
+
+TODO: clean up code.  Review code for correctness.  Make more rigorous tests.
+TODO: Javadoc!
+
+TODO: test new sig stuff w. classes loaded by diff class loaders.
+TODO: change lazy initialization locking operations to CAS operations.
+
+Need to test something like:
+
+class Boob {
+@Instrument
+function blah(SomeType beh);
+}
+
+class SomeType {
+@Instrument
+function beh(Boob boob);
+}
+
+make the executor provider proper and call it up w/ pMethodCall on every invocation
+for consistency?
+
+pass CtMethod to all nutrients
+Make executor provider not static methods
+Make nutrient factories not use static methods?
+
+Eviction listener to shut down throttler(s) - need to check out latest guava release.
+InvocationThrottler than can run the task in the calling thread?
+
+Instrument w/o f-ing up line numbers?
+Do the subclass approach... but that can't work :/  unless we can change what a constructor returns...
+
+put new class code at the bottom of the class?  This possible?
+
+Implement throttle nutrient
+Add more throttle tests
+Add performance tests
+
+TODO: split out into logical packages:
+aspects - annotations and nutrients
+tools - runnable throttler, cache, etc.
+core - instrumenter and config and so on
+
+TODO: create weakly keyed map to hold throttlers.
+
+
+
+TODO: instrument abstract methods
+TODO: get static method instrumentation working.
+
+doStuff(doingStuffClass) annotation
+put on limited task executor
+throttle
+refreshing cache
+throttle and cache
+a "do stuff" i.e., do what is specified by class, annotation
+
+-new annotations
+-return value from wrappers
+-get return value of other method
+-fix initialization of eats classloader....  so if sys classloader is gotten
+while it is still coming up we don't die... (systemclassloader from jboss aop)
+-do GSON for config and log4j for output
+
+-TODO: add documentation about how cache annotation is unsafe to use on methods that change
+the state of their object.

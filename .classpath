@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="functional_tests"/>
+	<classpathentry kind="src" path="performance_tests"/>
+	<classpathentry kind="src" path="demo"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="dep/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="dep/gson-1.4.jar"/>
+	<classpathentry kind="lib" path="dep/javassist.jar" sourcepath="/opt/javassist-3.12.GA/src/main/"/>
+	<classpathentry kind="lib" path="dep/jsr305.jar"/>
+	<classpathentry kind="lib" path="dep/guava-unknown.jar" sourcepath="/Users/mlaw/dev/src/java/guava-libraries-read-only/src"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

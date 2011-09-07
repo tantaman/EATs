@@ -1,0 +1,12 @@
+{
+  "mappings": [
+    { 
+      "annotation": "com.tantaman.eats.pub.annotations.threading.OnThread",
+      "factory": "com.tantaman.eats.pub.nutrients.impl.threading.OnThreadNutrient"
+    },
+    {
+      "annotation": "com.tantaman.eats.pub.annotations.threading.OnThreads",
+      "factory": "com.tantaman.eats.pub.nutrients.impl.threading.OnThreadsNutrient"
+    }
+  ]
+}
