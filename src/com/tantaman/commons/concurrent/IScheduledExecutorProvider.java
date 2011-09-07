@@ -1,4 +1,4 @@
-package com.tantaman.eats.tools.concurrent;
+package com.tantaman.commons.concurrent;
 
 import java.util.concurrent.ScheduledExecutorService;
 

@@ -20,8 +20,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.concurrent.TimeUnit;
 
+import com.tantaman.commons.concurrent.IScheduledExecutorProvider;
 import com.tantaman.eats.aop.pub.nutrients.impl.concurrent.DefaultCombinerScheduledExecutorProvider;
-import com.tantaman.eats.tools.concurrent.IScheduledExecutorProvider;
 
 // TODO: any way to ensure that this is only applied to methods
 // with a specified signature?

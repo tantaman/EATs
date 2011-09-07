@@ -19,9 +19,9 @@ package com.tantaman.eats.test.aop.caching;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.tantaman.commons.ref.EReferenceType;
 import com.tantaman.eats.aop.pub.annotations.caching.Cache;
 import com.tantaman.eats.tools.cache.ECacheType;
-import com.tantaman.eats.tools.reference.EReferenceType;
 
 public class WeakRefCacheTest {
 	/*

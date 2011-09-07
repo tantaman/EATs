@@ -16,12 +16,12 @@
 
 package sandbox.classes;
 
+import com.tantaman.commons.ref.EReferenceType;
 import com.tantaman.eats.aop.pub.annotations.caching.Cache;
 import com.tantaman.eats.aop.pub.annotations.debug.concurrent.ConcurrentAccesses;
 import com.tantaman.eats.aop.pub.annotations.debug.concurrent.OnThread;
 import com.tantaman.eats.aop.pub.annotations.debug.concurrent.OnThreads;
 import com.tantaman.eats.tools.cache.ECacheType;
-import com.tantaman.eats.tools.reference.EReferenceType;
 
 public class ExampleClass {
 	@OnThread("AWT-EventQueue")

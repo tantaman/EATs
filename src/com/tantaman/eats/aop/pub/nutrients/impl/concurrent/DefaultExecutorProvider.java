@@ -19,9 +19,9 @@ package com.tantaman.eats.aop.pub.nutrients.impl.concurrent;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import com.tantaman.commons.concurrent.IExecutorProvider;
+import com.tantaman.commons.concurrent.NamedThreadFactory;
 import com.tantaman.eats.aop.pub.annotations.concurrent.PutOnExecutor;
-import com.tantaman.eats.tools.concurrent.IExecutorProvider;
-import com.tantaman.eats.tools.concurrent.NamedThreadFactory;
 
 public class DefaultExecutorProvider implements IExecutorProvider<PutOnExecutor> {
 	public ExecutorService getExecutorForMethod(PutOnExecutor pAnnotation) {

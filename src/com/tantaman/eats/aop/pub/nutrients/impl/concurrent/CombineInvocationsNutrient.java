@@ -26,13 +26,13 @@ import java.util.concurrent.atomic.AtomicReference;
 import org.apache.log4j.Logger;
 
 import com.google.common.collect.MapMaker;
+import com.tantaman.commons.concurrent.IScheduledExecutorProvider;
+import com.tantaman.commons.concurrent.throttler.AccumulativeRunnable;
+import com.tantaman.commons.concurrent.throttler.InvocationCombiner;
 import com.tantaman.eats.aop.priv.common.MethodCall;
 import com.tantaman.eats.aop.pub.annotations.concurrent.CombineInvocations;
 import com.tantaman.eats.aop.pub.nutrients.Nutrient;
 import com.tantaman.eats.tools.Constants;
-import com.tantaman.eats.tools.concurrent.IScheduledExecutorProvider;
-import com.tantaman.eats.tools.concurrent.throttler.AccumulativeRunnable;
-import com.tantaman.eats.tools.concurrent.throttler.InvocationCombiner;
 
 // TODO: make a configurable version that can pass the entire list of parameters
 // instead of just the last one?

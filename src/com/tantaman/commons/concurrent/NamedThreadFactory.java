@@ -14,7 +14,7 @@
 *   limitations under the License.
 */
 
-package com.tantaman.eats.tools.concurrent;
+package com.tantaman.commons.concurrent;
 
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicLong;

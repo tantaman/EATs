@@ -14,7 +14,7 @@
 *   limitations under the License.
 */
 
-package com.tantaman.eats.tools.lang;
+package com.tantaman.commons.lang;
 
 public class DelegatingHashCodeAndEquals {
 	private final Object mDelegate;

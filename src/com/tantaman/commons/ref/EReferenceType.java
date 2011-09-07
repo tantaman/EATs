@@ -14,7 +14,7 @@
 *   limitations under the License.
 */
 
-package com.tantaman.eats.tools.reference;
+package com.tantaman.commons.ref;
 
 public enum EReferenceType {
 	SOFT,

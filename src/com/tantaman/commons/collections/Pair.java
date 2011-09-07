@@ -1,4 +1,4 @@
-package com.tantaman.eats.tools;
+package com.tantaman.commons.collections;
 
 public class Pair<T1, T2> {
 	private final T1 first;

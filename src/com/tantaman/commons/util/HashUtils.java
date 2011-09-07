@@ -14,7 +14,7 @@
 *   limitations under the License.
 */
 
-package com.tantaman.eats.tools;
+package com.tantaman.commons.util;
 
 import java.util.Arrays;
 

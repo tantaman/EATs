@@ -20,9 +20,9 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.concurrent.TimeUnit;
 
+import com.tantaman.commons.concurrent.IScheduledExecutorProvider;
 import com.tantaman.eats.aop.pub.annotations.concurrent.ScheduleExecution.Type;
 import com.tantaman.eats.aop.pub.nutrients.impl.concurrent.DefaultReScheduleExecutorProvider;
-import com.tantaman.eats.tools.concurrent.IScheduledExecutorProvider;
 
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ReScheduleExecution {

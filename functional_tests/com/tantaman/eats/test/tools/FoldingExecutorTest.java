@@ -26,8 +26,8 @@ import java.util.concurrent.Future;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.tantaman.eats.tools.concurrent.NamedThreadFactory;
-import com.tantaman.eats.tools.concurrent.executors.FoldingExecutor;
+import com.tantaman.commons.concurrent.NamedThreadFactory;
+import com.tantaman.commons.concurrent.executors.FoldingExecutor;
 
 public class FoldingExecutorTest {
 	private static volatile int numInvocations;

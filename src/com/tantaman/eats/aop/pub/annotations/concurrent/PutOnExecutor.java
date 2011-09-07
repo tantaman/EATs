@@ -19,8 +19,8 @@ package com.tantaman.eats.aop.pub.annotations.concurrent;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
+import com.tantaman.commons.concurrent.IExecutorProvider;
 import com.tantaman.eats.aop.pub.nutrients.impl.concurrent.DefaultExecutorProvider;
-import com.tantaman.eats.tools.concurrent.IExecutorProvider;
 
 @Retention(RetentionPolicy.RUNTIME)
 public @interface PutOnExecutor {

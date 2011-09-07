@@ -19,11 +19,11 @@ package com.tantaman.eats.aop.pub.nutrients.impl.concurrent;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import com.tantaman.commons.concurrent.IExecutorProvider;
+import com.tantaman.commons.concurrent.NamedThreadFactory;
+import com.tantaman.commons.concurrent.executors.FoldingExecutor;
 import com.tantaman.eats.aop.pub.annotations.concurrent.Fold;
 import com.tantaman.eats.aop.pub.annotations.concurrent.Fold.EFoldingPolicy;
-import com.tantaman.eats.tools.concurrent.IExecutorProvider;
-import com.tantaman.eats.tools.concurrent.NamedThreadFactory;
-import com.tantaman.eats.tools.concurrent.executors.FoldingExecutor;
 
 public class DefaultFoldingExecutorProvider implements IExecutorProvider<Fold> {
 	@Override

@@ -26,9 +26,9 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import javax.imageio.ImageIO;
 
+import com.tantaman.commons.ref.EReferenceType;
 import com.tantaman.eats.aop.pub.annotations.caching.Cache;
 import com.tantaman.eats.tools.cache.ECacheType;
-import com.tantaman.eats.tools.reference.EReferenceType;
 
 public class URLImageLoader {
 	

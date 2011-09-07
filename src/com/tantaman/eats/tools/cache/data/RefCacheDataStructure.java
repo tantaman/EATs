@@ -21,12 +21,12 @@ import java.lang.ref.ReferenceQueue;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import com.tantaman.commons.ref.IKeyedReference;
+import com.tantaman.commons.ref.KeyedSoftReference;
+import com.tantaman.commons.ref.KeyedWeakReference;
 import com.tantaman.eats.aop.pub.annotations.caching.Cache;
 import com.tantaman.eats.tools.cache.cleanup.ICleaner;
 import com.tantaman.eats.tools.cache.cleanup.RefQueueCleanupService;
-import com.tantaman.eats.tools.reference.IKeyedReference;
-import com.tantaman.eats.tools.reference.KeyedSoftReference;
-import com.tantaman.eats.tools.reference.KeyedWeakReference;
 
 
 // TODO: subclass this thing for the diff types of caches so we can actually get type sfatey

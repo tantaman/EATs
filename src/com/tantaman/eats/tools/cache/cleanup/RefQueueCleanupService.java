@@ -22,7 +22,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-import com.tantaman.eats.tools.concurrent.NamedThreadFactory;
+import com.tantaman.commons.concurrent.NamedThreadFactory;
 
 public class RefQueueCleanupService<REF_TYPE extends Reference<VAL_TYPE>, VAL_TYPE> implements ICleanupService<REF_TYPE, VAL_TYPE> {
 	private final ReferenceQueue<VAL_TYPE> mRefQueue;

@@ -16,8 +16,8 @@
 
 package com.tantaman.eats.aop.pub.annotations.concurrent;
 
+import com.tantaman.commons.concurrent.IExecutorProvider;
 import com.tantaman.eats.aop.pub.nutrients.impl.concurrent.DefaultFoldingExecutorProvider;
-import com.tantaman.eats.tools.concurrent.IExecutorProvider;
 
 /**
  * Hold map of running invocations of the method...

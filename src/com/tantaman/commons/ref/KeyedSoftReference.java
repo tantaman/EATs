@@ -14,8 +14,20 @@
 *   limitations under the License.
 */
 
-package com.tantaman.eats.tools.concurrent.executors;
+package com.tantaman.commons.ref;
 
-public class ConcurrentFoldingFoldingExecutor {
+import java.lang.ref.ReferenceQueue;
+import java.lang.ref.SoftReference;
 
+public class KeyedSoftReference<K, V> extends SoftReference<V> implements IKeyedReference<K, V> {
+	private final K mKey;
+	public KeyedSoftReference(K pKey, V referent, ReferenceQueue<? super V> q) {
+		super(referent, q);
+		mKey = pKey;
+	}
+
+	@Override
+	public K getKey() {
+		return mKey;
+	}
 }

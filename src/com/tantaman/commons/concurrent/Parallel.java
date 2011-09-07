@@ -1,4 +1,4 @@
-package com.tantaman.eats.tools.concurrent;
+package com.tantaman.commons.concurrent;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -7,7 +7,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-public class Concurrent {
+public class Parallel {
 	private static final int NUM_CORES = Runtime.getRuntime().availableProcessors();
 	public static <T> void For(final Iterable<T> pElements, final Operation<T> pOperation) {
 		ExecutorService executor = Executors.newFixedThreadPool(NUM_CORES);

@@ -19,7 +19,7 @@ package sandbox;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import com.tantaman.eats.tools.concurrent.executors.FoldingExecutor;
+import com.tantaman.commons.concurrent.executors.FoldingExecutor;
 
 public class FoldingFun {
 	public static void main(String[] args) {

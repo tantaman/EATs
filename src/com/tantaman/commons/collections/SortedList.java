@@ -1,4 +1,4 @@
-package com.tantaman.eats.tools.collections;
+package com.tantaman.commons.collections;
 
 import java.util.ArrayList;
 import java.util.Collection;

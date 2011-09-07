@@ -14,9 +14,20 @@
 *   limitations under the License.
 */
 
-package com.tantaman.eats.tools.reference;
+package com.tantaman.commons.ref;
 
-public interface IKeyedReference<K, V> {
-	public K getKey();
-	public V get();
+import java.lang.ref.ReferenceQueue;
+import java.lang.ref.WeakReference;
+
+public class KeyedWeakReference<K, V> extends WeakReference<V> implements IKeyedReference<K, V> {
+	private final K mKey;
+	public KeyedWeakReference(K pKey, V referent, ReferenceQueue<? super V> q) {
+		super(referent, q);
+		mKey = pKey;
+	}
+	
+	@Override
+	public K getKey() {
+		return mKey;
+	}
 }

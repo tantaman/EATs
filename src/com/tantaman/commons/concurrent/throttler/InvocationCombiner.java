@@ -14,7 +14,7 @@
 *  limitations under the License.
 */
 
-package com.tantaman.eats.tools.concurrent.throttler;
+package com.tantaman.commons.concurrent.throttler;
 
 import java.util.List;
 import java.util.concurrent.ScheduledExecutorService;

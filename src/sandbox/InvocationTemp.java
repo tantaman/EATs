@@ -4,9 +4,9 @@ import java.util.LinkedList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-import com.tantaman.eats.tools.concurrent.NamedThreadFactory;
-import com.tantaman.eats.tools.concurrent.throttler.AccumulativeRunnable;
-import com.tantaman.eats.tools.concurrent.throttler.InvocationCombiner;
+import com.tantaman.commons.concurrent.NamedThreadFactory;
+import com.tantaman.commons.concurrent.throttler.AccumulativeRunnable;
+import com.tantaman.commons.concurrent.throttler.InvocationCombiner;
 
 public class InvocationTemp {
 	public static void main(String[] args) {

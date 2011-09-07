@@ -14,20 +14,11 @@
 *   limitations under the License.
 */
 
-package com.tantaman.eats.tools.reference;
+package com.tantaman.commons.concurrent;
 
-import java.lang.ref.ReferenceQueue;
-import java.lang.ref.WeakReference;
+import java.util.concurrent.ExecutorService;
 
-public class KeyedWeakReference<K, V> extends WeakReference<V> implements IKeyedReference<K, V> {
-	private final K mKey;
-	public KeyedWeakReference(K pKey, V referent, ReferenceQueue<? super V> q) {
-		super(referent, q);
-		mKey = pKey;
-	}
-	
-	@Override
-	public K getKey() {
-		return mKey;
-	}
+
+public interface IExecutorProvider<ANNOTATION_TYPE> {
+	public ExecutorService getExecutorForMethod(ANNOTATION_TYPE pAnnotation);
 }

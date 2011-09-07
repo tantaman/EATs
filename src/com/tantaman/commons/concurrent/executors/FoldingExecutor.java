@@ -14,7 +14,7 @@
 *   limitations under the License.
 */
 
-package com.tantaman.eats.tools.concurrent.executors;
+package com.tantaman.commons.concurrent.executors;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -31,135 +31,22 @@ import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 
-// TODO: may need a folding thread...
-// Or a wrapper around folding executor which puts
-// the submissions onto a different thread.
+/**
+ * 
+ * @author Matt Crinklaw-Vogt
+ *
+ */
 public class FoldingExecutor implements ExecutorService {
 	private final ExecutorService mExecutor;
 	private final Map<QueueEntry<?>, QueueEntry<?>> mTasks;
 	private final boolean mThrowAway;
 	
-	// will need to wrap the runnables in another runnable that we can replace
-	// the inside of.
-	private static class BaseQueueEntry<T> {
-		protected final AtomicReference<Callable<?>> mTask;
-		
-		public BaseQueueEntry(Callable<T> pTask) {
-			mTask = new AtomicReference<Callable<?>>(pTask);
-		}
-		
-		public Object getTask() {
-			Object userObj = mTask.get();
-			
-			if (userObj instanceof RunnableAsCallable<?>) {
-				userObj = ((RunnableAsCallable<?>)userObj).getRunnable();
-			}
-			
-			return userObj;
-		}
-		
-		@Override
-		public int hashCode() {
-			return mTask.get().hashCode();
-		}
-		
-		@Override
-		public boolean equals(Object obj) {
-			if (obj instanceof BaseQueueEntry<?>) {
-				obj = ((BaseQueueEntry<?>)obj).getTask();
-			}
-			
-			return mTask.get().equals(obj);
-		}
-		
-		@Override
-		public String toString() {
-			return mTask.toString();
-		}
-	}
-	
-	private class QueueEntry<T> extends BaseQueueEntry<T> implements Callable<T> {
-		private final AtomicBoolean mRunning;
-		private final AtomicReference<Future<T>> mFuture;
-		
-		public QueueEntry(Callable<T> pTask) {
-			super(pTask);
-			mRunning = new AtomicBoolean(false);
-			mFuture = new AtomicReference<Future<T>>();
-		}
-		
-		public Future<T> getFuture() {
-			return mFuture.get();
-		}
-		
-		public void setFuture(Future<T> pFuture) {
-			mFuture.set(pFuture);
-		}
-
-		@Override
-		public T call() throws Exception {
-			synchronized (mTask) {
-				mRunning.set(true);
-			}
-			
-			if (!mThrowAway)
-				mTasks.remove(this);
-			// Unsafe... but is there really a way around it if we want to support callable?
-			T result = (T)mTask.get().call();
-			
-			if (mThrowAway)
-				mTasks.remove(this);
-			
-			return result;
-		}
-		
-		public boolean replaceTask(Callable<?> pTask) {
-			if (mThrowAway) return true;
-			if (mRunning.get()) return false;
-			synchronized (mTask) {
-				if (mRunning.get()) return false;
-				mTask.set(pTask);
-				return true;
-			}
-		}
-	}
-	
-	private static class RunnableAsCallable<Void> implements Callable<Void> {
-		private final Runnable mRunnable;
-		public RunnableAsCallable(Runnable pRunnable) {
-			mRunnable = pRunnable;
-		}
-		
-		@Override
-		public Void call() throws Exception {
-			mRunnable.run();
-			return null;
-		}
-		
-		public Runnable getRunnable() {
-			return mRunnable;
-		}
-		
-		@Override
-		public boolean equals(Object obj) {
-			if (obj instanceof RunnableAsCallable<?>) {
-				obj = ((RunnableAsCallable<?>)obj).getRunnable();
-			}
-			
-			return mRunnable.equals(obj);
-		}
-		
-		@Override
-		public int hashCode() {
-			return mRunnable.hashCode();
-		}
-		
-		@Override
-		public String toString() {
-			return mRunnable.toString();
-		}
-	}
-	
+	/**
+	 * 
+	 * @param pExecutor Executor to use
+	 * @param pThrowAway true : throw away duplicate task submissions.
+	 * false : replace duplicate tasks with the latest task to be submitted.
+	 */
 	public FoldingExecutor(ExecutorService pExecutor, boolean pThrowAway) {
 		mExecutor = pExecutor;
 		mTasks = new HashMap<QueueEntry<?>, QueueEntry<?>>();
@@ -283,5 +170,127 @@ public class FoldingExecutor implements ExecutorService {
 		RunnableAsCallable<Void> callableTask = new RunnableAsCallable<Void>(command);
 		
 		submit(callableTask);
+	}
+	
+	
+	// will need to wrap the runnables in another runnable that we can replace
+	// the inside of.
+	private static class BaseQueueEntry<T> {
+		protected final AtomicReference<Callable<?>> mTask;
+		
+		public BaseQueueEntry(Callable<T> pTask) {
+			mTask = new AtomicReference<Callable<?>>(pTask);
+		}
+		
+		public Object getTask() {
+			Object userObj = mTask.get();
+			
+			if (userObj instanceof RunnableAsCallable<?>) {
+				userObj = ((RunnableAsCallable<?>)userObj).getRunnable();
+			}
+			
+			return userObj;
+		}
+		
+		@Override
+		public int hashCode() {
+			return mTask.get().hashCode();
+		}
+		
+		@Override
+		public boolean equals(Object obj) {
+			if (obj instanceof BaseQueueEntry<?>) {
+				obj = ((BaseQueueEntry<?>)obj).getTask();
+			}
+			
+			return mTask.get().equals(obj);
+		}
+		
+		@Override
+		public String toString() {
+			return mTask.toString();
+		}
+	}
+	
+	private class QueueEntry<T> extends BaseQueueEntry<T> implements Callable<T> {
+		private final AtomicBoolean mRunning;
+		private final AtomicReference<Future<T>> mFuture;
+		
+		public QueueEntry(Callable<T> pTask) {
+			super(pTask);
+			mRunning = new AtomicBoolean(false);
+			mFuture = new AtomicReference<Future<T>>();
+		}
+		
+		public Future<T> getFuture() {
+			return mFuture.get();
+		}
+		
+		public void setFuture(Future<T> pFuture) {
+			mFuture.set(pFuture);
+		}
+
+		@Override
+		public T call() throws Exception {
+			synchronized (mTask) {
+				mRunning.set(true);
+			}
+			
+			if (!mThrowAway)
+				mTasks.remove(this);
+			// Unsafe... but is there really a way around it if we want to support callable?
+			T result = (T)mTask.get().call();
+			
+			if (mThrowAway)
+				mTasks.remove(this);
+			
+			return result;
+		}
+		
+		public boolean replaceTask(Callable<?> pTask) {
+			if (mThrowAway) return true;
+			if (mRunning.get()) return false;
+			synchronized (mTask) {
+				if (mRunning.get()) return false;
+				mTask.set(pTask);
+				return true;
+			}
+		}
+	}
+	
+	private static class RunnableAsCallable<Void> implements Callable<Void> {
+		private final Runnable mRunnable;
+		public RunnableAsCallable(Runnable pRunnable) {
+			mRunnable = pRunnable;
+		}
+		
+		@Override
+		public Void call() throws Exception {
+			mRunnable.run();
+			return null;
+		}
+		
+		public Runnable getRunnable() {
+			return mRunnable;
+		}
+		
+		@Override
+		public boolean equals(Object obj) {
+			if (obj instanceof RunnableAsCallable<?>) {
+				obj = ((RunnableAsCallable<?>)obj).getRunnable();
+			}
+			
+			return mRunnable.equals(obj);
+		}
+		
+		@Override
+		public int hashCode() {
+			return mRunnable.hashCode();
+		}
+		
+		@Override
+		public String toString() {
+			return mRunnable.toString();
+		}
 	}
 }

@@ -27,10 +27,10 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import org.junit.Test;
 
+import com.tantaman.commons.concurrent.NamedThreadFactory;
+import com.tantaman.commons.concurrent.throttler.AccumulativeRunnable;
+import com.tantaman.commons.concurrent.throttler.InvocationCombiner;
 import com.tantaman.eats.aop.pub.annotations.concurrent.CombineInvocations;
-import com.tantaman.eats.tools.concurrent.NamedThreadFactory;
-import com.tantaman.eats.tools.concurrent.throttler.AccumulativeRunnable;
-import com.tantaman.eats.tools.concurrent.throttler.InvocationCombiner;
 
 public class ThrottleInvocationsPerformanceTest {
 	private static final int NUM_OBJECTS = 500;

@@ -16,7 +16,7 @@
 
 package com.tantaman.eats.tools.cache;
 
-import com.tantaman.eats.tools.HashUtils;
+import com.tantaman.commons.util.HashUtils;
 
 public class CacheKey {
 	private final Object [] mArgs;
