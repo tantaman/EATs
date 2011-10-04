@@ -76,6 +76,12 @@ public class InvocationCombinerTest {
 		// Sleep to try to make sure there are no additional invocations.
 		// not sure if there is any other way to accomplish this without
 		// actually getting a reference to the combiner.
+		// yeah... this is bad, but is there really a better way w/o
+		// modifying the code under test?  The issue is that, if things aren't working,
+		// there could be more invocations queued up in the pipe.
+		// The only way to test that without a sleep
+		// would be to add an operation to get the queue size from the combiner
+		// but the combiner is added via an annotation, so we have no way to get it.
 		try {
 			Thread.sleep(150);
 		} catch (InterruptedException e1) {
@@ -119,7 +125,11 @@ public class InvocationCombinerTest {
 
 		try {
 			// yeah... this is bad, but is there really a better way w/o
-			// modifying the code under test?
+			// modifying the code under test?  The issue is that, if things aren't working,
+			// there could be more invocations queued up in the pipe.
+			// The only way to test that without a sleep
+			// would be to add an operation to get the queue size from the combiner
+			// but the combiner is added via an annotation, so we have no way to get it.
 			Thread.sleep(150);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -149,8 +159,8 @@ public class InvocationCombinerTest {
 		@CombineInvocations
 		public void noParamMethodToThrottle() {
 			synchronized (mCoordinator) {
-				mCoordinator.notifyAll();
 				ran = true;
+				mCoordinator.notifyAll();				
 			}
 
 			synchronized (mCoordinator2) {

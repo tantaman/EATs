@@ -16,6 +16,9 @@
 
 package com.tantaman.eats.test.aop.concurrent;
 
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+
 import junit.framework.Assert;
 
 import org.junit.Test;
@@ -26,6 +29,7 @@ import com.tantaman.eats.aop.pub.annotations.concurrent.Fold.EFoldingPolicy;
 public class FoldingTest {
 	private final Object mCoordinator = new Object();
 	private static int invocations = 0;
+	private final CountDownLatch latch = new CountDownLatch(4);
 	
 	@Test
 	public void testFolding() {
@@ -37,7 +41,7 @@ public class FoldingTest {
 		}
 		
 		try {
-			Thread.sleep(150);
+			latch.await(150, TimeUnit.MILLISECONDS);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -50,6 +54,7 @@ public class FoldingTest {
 		public void foldMe(int bleh, Object blah) {
 			synchronized (mCoordinator) {
 				++invocations;
+				latch.countDown();
 			}
 		}
 	}
